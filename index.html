@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Letters | Matcha</title>
+
+<style>
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+:root {
+    --wall: #617b57;
+    --wall-dark: #435b40;
+
+    --green: #78945d;
+    --green-dark: #49613f;
+    --green-light: #a9bd8b;
+
+    --pink: #e59a91;
+    --pink-light: #f1b8ad;
+
+    --cream: #fff0d8;
+    --cream-dark: #ead5b2;
+
+    --wood: #765038;
+    --wood-dark: #513523;
+
+    --text: #526440;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #304331;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =====================================================
+   PHONE
+===================================================== */
+
+.page {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.page.active {
+    display: flex;
+}
+
+@media (min-width: 600px) {
+
+    .page {
+        width: min(100vw, calc(100dvh * .5625));
+        height: min(100dvh, calc(100vw / .5625));
+
+        left: 50%;
+        right: auto;
+
+        transform: translateX(-50%);
+
+        box-shadow: 0 0 70px rgba(0,0,0,.35);
+    }
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.wall {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(255,230,190,.14),
+            transparent 32%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,.015) 0,
+            rgba(255,255,255,.015) 2px,
+            transparent 2px,
+            transparent 13px
+        ),
+        linear-gradient(
+            135deg,
+            #718967,
+            #526e4f 58%,
+            #405b42
+        );
+}
+
+
+/* =====================================================
+   COUNTER
+===================================================== */
+
+.counter {
+    position: absolute;
+
+    left: -5%;
+    right: -5%;
+    bottom: -2%;
+
+    height: 18%;
+
+    z-index: 2;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.025) 0,
+            rgba(255,255,255,.025) 2px,
+            transparent 2px,
+            transparent 13px
+        ),
+        linear-gradient(
+            #9b704e,
+            #63442f
+        );
+
+    box-shadow:
+        0 -15px 35px rgba(0,0,0,.23);
+}
+
+
+/* =====================================================
+   WINDOW
+===================================================== */
+
+.window {
+    position: absolute;
+
+    left: 3.5%;
+    top: 7%;
+
+    width: 27%;
+    height: 18%;
+
+    z-index: 4;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dce2c8,
+            #f1d5c2
+        );
+
+    border: 7px solid var(--wood);
+
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,.12),
+        0 8px 20px rgba(0,0,0,.15);
+}
+
+.window::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background: var(--wood);
+
+    transform: translateX(-50%);
+}
+
+.window::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background: var(--wood);
+
+    transform: translateY(-50%);
+}
+
+
+/* =====================================================
+   AWNING
+===================================================== */
+
+.awning {
+    position: absolute;
+
+    left: 1.5%;
+    top: 5%;
+
+    width: 31%;
+    height: 3.5%;
+
+    z-index: 7;
+
+    min-height: 17px;
+
+    border-radius: 0 0 16px 16px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #f2d3c3 0,
+            #f2d3c3 18px,
+            #879c70 18px,
+            #879c70 36px
+        );
+
+    box-shadow: 0 5px 8px rgba(0,0,0,.15);
+}
+
+
+/* =====================================================
+   WINDOW FLOWERS
+===================================================== */
+
+.window-box {
+    position: absolute;
+
+    left: 4%;
+    top: 22.5%;
+
+    width: 25%;
+    height: 6%;
+
+    z-index: 8;
+
+    background: var(--wood);
+
+    border-radius: 5px;
+}
+
+.flower {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: var(--pink);
+}
+
+.flower::after {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 4px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #e6c875;
+}
+
+.flower:nth-child(1) {
+    left: 10%;
+    top: -9px;
+}
+
+.flower:nth-child(2) {
+    left: 35%;
+    top: -13px;
+}
+
+.flower:nth-child(3) {
+    left: 60%;
+    top: -7px;
+}
+
+.flower:nth-child(4) {
+    left: 80%;
+    top: -12px;
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+    position: absolute;
+
+    right: 3.5%;
+    top: 7.5%;
+
+    width: 27%;
+    height: 19%;
+
+    z-index: 5;
+
+    padding: 10px 8px;
+
+    border: 7px solid var(--wood);
+
+    background: #40533c;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.22);
+
+    overflow: hidden;
+}
+
+.menu-title {
+    color: #f6e5c8;
+
+    font-family: Arial, sans-serif;
+
+    font-size: clamp(7px, 2vw, 11px);
+
+    text-align: center;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.menu-line {
+    width: 75%;
+    height: 1px;
+
+    margin: 6px auto;
+
+    background: rgba(246,229,200,.45);
+}
+
+.menu-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 4px;
+
+    width: 100%;
+
+    padding: 4px 1px;
+
+    color: #eadbbd;
+
+    font-family: Arial, sans-serif;
+
+    font-size: clamp(5px, 1.45vw, 8px);
+
+    white-space: nowrap;
+
+    line-height: 1.25;
+}
+
+.menu-item span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-item span:last-child {
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   SHELF
+===================================================== */
+
+.shelf {
+    position: absolute;
+
+    right: 3%;
+    top: 28%;
+
+    width: 29%;
+    height: 18%;
+
+    z-index: 7;
+}
+
+.shelf-board {
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+    height: 7px;
+
+    background:
+        linear-gradient(
+            #93694b,
+            #5c3b28
+        );
+
+    border-radius: 3px;
+
+    box-shadow: 0 4px 7px rgba(0,0,0,.2);
+}
+
+.shelf-board.top {
+    top: 12%;
+}
+
+.shelf-board.bottom {
+    top: 76%;
+}
+
+.shelf-support {
+    position: absolute;
+
+    top: 12%;
+
+    width: 5px;
+    height: 70%;
+
+    background: var(--wood-dark);
+}
+
+.shelf-support.left {
+    left: 15%;
+}
+
+.shelf-support.right {
+    right: 15%;
+}
+
+
+/* =====================================================
+   PLANT
+===================================================== */
+
+.plant {
+    position: absolute;
+
+    right: 13%;
+    top: -1%;
+
+    width: 40px;
+    height: 57px;
+}
+
+.plant-pot {
+    position: absolute;
+
+    left: 6px;
+    bottom: 0;
+
+    width: 28px;
+    height: 21px;
+
+    background:
+        linear-gradient(
+            #efb4ac,
+            #c78376
+        );
+
+    border-radius: 3px 3px 9px 9px;
+}
+
+.plant-stem {
+    position: absolute;
+
+    left: 19px;
+    bottom: 16px;
+
+    width: 2px;
+    height: 34px;
+
+    background: #59764e;
+}
+
+.leaf {
+    position: absolute;
+
+    width: 17px;
+    height: 28px;
+
+    background: #78965e;
+
+    border-radius: 100% 0 100% 0;
+}
+
+.leaf.one {
+    left: 2px;
+    bottom: 29px;
+    transform: rotate(-40deg);
+}
+
+.leaf.two {
+    left: 17px;
+    bottom: 35px;
+    transform: rotate(24deg);
+}
+
+.leaf.three {
+    left: 20px;
+    bottom: 23px;
+    transform: rotate(48deg);
+}
+
+
+/* =====================================================
+   MATCHA TIN
+===================================================== */
+
+.matcha-tin {
+    position: absolute;
+
+    left: 15%;
+    bottom: 8px;
+
+    width: 25px;
+    height: 33px;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            #dce1ba,
+            #9dac7b
+        );
+}
+
+.matcha-tin::before {
+    content: "MATCHA";
+
+    position: absolute;
+
+    top: 12px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 4px;
+
+    color: #53613d;
+}
+
+
+/* =====================================================
+   WHISK
+===================================================== */
+
+.whisk {
+    position: absolute;
+
+    right: 15%;
+    bottom: 8px;
+
+    width: 10px;
+    height: 36px;
+}
+
+.whisk-handle {
+    width: 4px;
+    height: 24px;
+
+    margin: auto;
+
+    background: #a87950;
+
+    border-radius: 5px;
+}
+
+.whisk-head {
+    position: absolute;
+
+    bottom: 0;
+    left: 1px;
+
+    width: 8px;
+    height: 17px;
+
+    border: 1px solid #d1b27e;
+    border-top: 0;
+
+    border-radius: 0 0 50% 50%;
+}
+
+
+/* =====================================================
+   LAMP
+===================================================== */
+
+.lamp {
+    position: absolute;
+
+    left: 50%;
+    top: -1%;
+
+    width: 100px;
+    height: 115px;
+
+    z-index: 8;
+
+    transform:
+        translateX(-50%)
+        scale(.62);
+
+    transform-origin: top center;
+}
+
+.lamp-wire {
+    width: 3px;
+    height: 54px;
+
+    margin: auto;
+
+    background: #39312c;
+}
+
+.lamp-shade {
+    position: relative;
+
+    width: 100px;
+    height: 53px;
+
+    background:
+        linear-gradient(
+            #efb8ae,
+            #c97f78
+        );
+
+    border-radius: 50% 50% 15px 15px;
+}
+
+.lamp-bulb {
+    position: absolute;
+
+    left: 36px;
+    bottom: -13px;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: #ffe2a1;
+
+    box-shadow:
+        0 0 30px #ffe2a1,
+        0 0 65px rgba(255,226,161,.4);
+}
+
+
+/* =====================================================
+   MATCHA MACHINE
+===================================================== */
+
+.machine {
+    position: absolute;
+
+    right: 1%;
+    bottom: 16%;
+
+    width: 27%;
+    height: 13%;
+
+    z-index: 8;
+
+    min-width: 105px;
+    min-height: 75px;
+
+    border: 3px solid #4d5c3f;
+
+    border-radius: 8px 8px 4px 4px;
+
+    background:
+        linear-gradient(
+            #a9b982,
+            #728b59
+        );
+
+    box-shadow: 0 10px 20px rgba(0,0,0,.24);
+}
+
+.machine-top {
+    position: absolute;
+
+    top: -11px;
+    left: 9px;
+    right: 9px;
+
+    height: 13px;
+
+    background: #b9c994;
+
+    border-radius: 6px 6px 2px 2px;
+}
+
+.machine-button {
+    position: absolute;
+
+    top: 14px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #e9aaa2;
+}
+
+.machine-button.one {
+    right: 13px;
+}
+
+.machine-button.two {
+    right: 29px;
+}
+
+.machine-gauge {
+    position: absolute;
+
+    left: 11px;
+    top: 27px;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: #f3e2c5;
+
+    border: 3px solid #6d5842;
+}
+
+.machine-gauge::after {
+    content: "";
+
+    position: absolute;
+
+    left: 11px;
+    top: 4px;
+
+    width: 2px;
+    height: 8px;
+
+    background: #513a2c;
+
+    transform: rotate(25deg);
+}
+
+.portafilter {
+    position: absolute;
+
+    top: 45px;
+    right: 17px;
+
+    width: 32px;
+    height: 5px;
+
+    border-radius: 5px;
+
+    background: #292522;
+
+    transform: rotate(8deg);
+}
+
+.portafilter::after {
+    content: "";
+
+    position: absolute;
+
+    right: -26px;
+    top: 1px;
+
+    width: 29px;
+    height: 4px;
+
+    background: #292522;
+
+    border-radius: 5px;
+}
+
+.matcha-stream {
+    position: absolute;
+
+    top: 51px;
+    right: 33px;
+
+    width: 3px;
+    height: 18px;
+
+    background: #708c4d;
+
+    animation: drip 1.4s infinite;
+}
+
+@keyframes drip {
+    0%,100% {
+        height: 7px;
+        opacity: .45;
+    }
+
+    50% {
+        height: 19px;
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   LARGE MATCHA CUP
+===================================================== */
+
+.matcha-cup {
+    position: absolute;
+
+    right: 5%;
+    bottom: 5%;
+
+    width: 75px;
+    height: 78px;
+
+    z-index: 9;
+
+    transform: scale(.9);
+}
+
+.cup-body {
+    position: absolute;
+
+    left: 7px;
+    bottom: 5px;
+
+    width: 60px;
+    height: 55px;
+
+    background:
+        linear-gradient(
+            #aec68a,
+            #76955b
+        );
+
+    border-radius:
+        5px 5px 23px 23px;
+
+    box-shadow:
+        0 7px 12px rgba(0,0,0,.2);
+}
+
+.cup-top {
+    position: absolute;
+
+    left: 5px;
+    top: 4px;
+
+    width: 64px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: #76955b;
+
+    border: 4px solid var(--cream);
+
+    z-index: 3;
+}
+
+.cup-cream {
+    position: absolute;
+
+    left: 8px;
+    top: 2px;
+
+    width: 59px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background:
+        #fff2dc;
+
+    z-index: 4;
+
+    box-shadow:
+        0 2px 2px rgba(0,0,0,.08);
+}
+
+.cup-cream::before {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    top: -8px;
+
+    width: 34px;
+    height: 20px;
+
+    background: #fff2dc;
+
+    border-radius: 50%;
+}
+
+.cup-cream::after {
+    content: "";
+
+    position: absolute;
+
+    left: 28px;
+    top: -11px;
+
+    width: 23px;
+    height: 16px;
+
+    background: #fff2dc;
+
+    border-radius: 50%;
+}
+
+.cup-handle {
+    position: absolute;
+
+    right: -9px;
+    top: 23px;
+
+    width: 25px;
+    height: 28px;
+
+    border: 6px solid #87a267;
+    border-left: 0;
+
+    border-radius: 0 50% 50% 0;
+
+    z-index: 1;
+}
+
+.cup-straw {
+    position: absolute;
+
+    right: 22px;
+    top: -13px;
+
+    width: 5px;
+    height: 43px;
+
+    background: #e49b92;
+
+    border-radius: 5px;
+
+    transform: rotate(9deg);
+
+    z-index: 5;
+}
+
+.cup-strawberry {
+    position: absolute;
+
+    right: -1px;
+    top: -9px;
+
+    width: 19px;
+    height: 24px;
+
+    background: #d87870;
+
+    border-radius: 55% 55% 65% 65%;
+
+    transform: rotate(22deg);
+
+    z-index: 7;
+}
+
+.cup-strawberry::before {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 5px;
+
+    width: 11px;
+    height: 8px;
+
+    background: #71915d;
+
+    border-radius: 50% 0 50% 0;
+}
+
+
+/* =====================================================
+   SMALL STRAWBERRIES
+===================================================== */
+
+.strawberry {
+    position: absolute;
+
+    width: 20px;
+    height: 25px;
+
+    z-index: 8;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ed958c,
+            #c85d59
+        );
+
+    border-radius: 55% 55% 65% 65%;
+}
+
+.strawberry::before {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 6px;
+
+    width: 12px;
+    height: 9px;
+
+    background: #718d5a;
+
+    border-radius: 50% 0 50% 0;
+}
+
+.strawberry.left {
+    left: 5%;
+    bottom: 7%;
+}
+
+.strawberry.small {
+    left: 15%;
+    bottom: 14%;
+
+    transform: scale(.65);
+}
+
+.strawberry.top {
+    right: 6%;
+    top: 34%;
+
+    transform: scale(.62);
+}
+
+
+/* =====================================================
+   MATCHA POWDER
+===================================================== */
+
+.powder {
+    position: absolute;
+
+    left: 7%;
+    bottom: 7%;
+
+    width: 72px;
+    height: 30px;
+
+    z-index: 8;
+}
+
+.powder-pile {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 43px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #718d4f;
+}
+
+.powder-spoon {
+    position: absolute;
+
+    left: 29px;
+    bottom: 8px;
+
+    width: 43px;
+    height: 7px;
+
+    border-radius: 10px;
+
+    background: #cda579;
+
+    transform: rotate(-17deg);
+}
+
+.powder-spoon::after {
+    content: "";
+
+    position: absolute;
+
+    left: -11px;
+    top: -4px;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #d5b083;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.content {
+    position: relative;
+
+    z-index: 40;
+
+    width: 70%;
+    max-width: 310px;
+
+    text-align: center;
+
+    transform: translateY(2%);
+}
+
+.logo {
+    direction: ltr;
+
+    margin-bottom: 7px;
+
+    color: #fff0d8;
+
+    font-size: clamp(18px,5vw,23px);
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.25);
+}
+
+.logo span {
+    color: #f1aaa3;
+}
+
+
+/* =====================================================
+   PAPER
+===================================================== */
+
+.paper {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        22px
+        15px
+        20px;
+
+    border:
+        1px solid rgba(80,80,45,.22);
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,246,225,.99),
+            rgba(242,225,194,.99)
+        );
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,.30);
+}
+
+.paper::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border:
+        1px solid rgba(89,105,62,.20);
+
+    pointer-events: none;
+}
+
+.paper::after {
+    content: "♡";
+
+    position: absolute;
+
+    top: 10px;
+    left: 13px;
+
+    color: rgba(224,133,127,.5);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   INVITATION HEADER
+===================================================== */
+
+.small {
+    position: relative;
+
+    z-index: 5;
+
+    margin-bottom: 7px;
+
+    color: #71815b;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   MATCHA ICON
+===================================================== */
+
+.matcha-icon {
+    position: relative;
+
+    width: 70px;
+    height: 57px;
+
+    margin:
+        1px
+        auto
+        3px;
+}
+
+.main-cup {
+    position: absolute;
+
+    left: 10px;
+    bottom: 1px;
+
+    width: 50px;
+    height: 34px;
+
+    border-radius:
+        4px 4px 16px 16px;
+
+    background:
+        linear-gradient(
+            #a9c482,
+            #759457
+        );
+
+    box-shadow:
+        0 5px 8px rgba(0,0,0,.13);
+}
+
+.main-cream {
+    position: absolute;
+
+    left: 11px;
+    top: 12px;
+
+    width: 48px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #fff0d8;
+
+    z-index: 4;
+}
+
+.main-cream::before {
+    content: "";
+
+    position: absolute;
+
+    left: 9px;
+    top: -6px;
+
+    width: 29px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #fff0d8;
+}
+
+.main-strawberry {
+    position: absolute;
+
+    right: 3px;
+    top: 8px;
+
+    width: 16px;
+    height: 20px;
+
+    border-radius: 55% 55% 65% 65%;
+
+    background: #d87870;
+
+    transform:
